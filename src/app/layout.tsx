@@ -1,18 +1,10 @@
 import "~/styles/globals.css";
 
 import { cookies } from "next/headers";
-
 import { TRPCReactProvider } from "~/trpc/react";
+
 import Navbar from "./_components/molecules/Navbar";
-
-import localFont from "next/font/local";
 import Footer from "./_components/molecules/Footer";
-
-const obviously = localFont({
-  src: "../../public/fonts/Obviously-Regular.woff2",
-  display: "swap",
-  variable: "--font-obviously",
-});
 
 export const metadata = {
   title: "Create T3 App",
@@ -29,7 +21,6 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-black">
         <div className="flex min-h-screen flex-col items-center gap-14 py-4 font-poppins md:gap-20">
-          {/* <body className={obviously.className}> */}
           <Navbar />
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}

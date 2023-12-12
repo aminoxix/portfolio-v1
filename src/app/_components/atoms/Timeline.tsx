@@ -54,12 +54,19 @@ const communityInteraction = [
     description: "devstrons (open source)",
     tenure: "present",
   },
+  {
+    track: 4,
+    icon: "/images/bugtrons-76.png",
+    name: "founder",
+    description: "bugtrons (contest)",
+    tenure: "present",
+  },
 ];
 
 const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
   const timelineData = toggleTimeline ? communityInteraction : workExperience;
   return (
-    <div className="flex w-full flex-col items-center pb-10 md:pb-5">
+    <div className="flex w-full flex-col items-center">
       {timelineData.map((timeline) => (
         <>
           {/* Timeline */}
@@ -67,7 +74,7 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
             {/* Above line */}
             <div className="pl-8">
               <div
-                className={`h-7 border-l-2 border-dashed border-primary ${
+                className={`h-8 border-l-2 border-dashed border-primary ${
                   timeline.track === 1 && "invisible"
                 }`}
               ></div>
@@ -75,6 +82,7 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
             {/* Avatar */}
             <div className="relative flex items-center">
               <Image
+                loading="eager"
                 src={timeline.icon}
                 alt={timeline.name}
                 width={70}
@@ -82,13 +90,13 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
               />
               <div
                 key={timeline.name}
-                className={`absolute flex w-28 flex-col gap-10 rounded-xl border-4 border-secondary p-3 md:w-[350px] ${
+                className={`absolute flex w-36 flex-grow flex-col gap-5 rounded-xl p-3 md:w-48 ${
                   timeline.track % 2 === 0
                     ? toggleTimeline
                       ? "left-20 md:left-24"
-                      : "right-20 md:right-24"
+                      : "right-14 md:right-24"
                     : toggleTimeline
-                      ? "right-20 md:right-24"
+                      ? "right-14 md:right-24"
                       : "left-20 md:left-24"
                 }`}
               >
@@ -109,8 +117,8 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
             {/* Below line */}
             <div className="pl-8">
               <div
-                className={`h-5 border-l-2 border-dashed border-primary ${
-                  workExperience.length === timeline.track && "invisible"
+                className={`h-9 border-l-2 border-dashed border-primary ${
+                  timelineData.length === timeline.track && "invisible"
                 }`}
               ></div>
             </div>

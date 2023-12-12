@@ -1,2 +1,1 @@
-export { LinkedInIcon } from "./linkedin";
-export { PolyworkIcon } from "./polywork";
+export { InvertedCommas } from "./InvertedCommas";

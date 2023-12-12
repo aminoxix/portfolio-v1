@@ -14,6 +14,7 @@ const Navbar = () => {
           href={"https://github.com/aminoxix"}
         >
           <Image
+            loading="eager"
             className="cursor-pointer rounded-full"
             src={"/images/anshumaan.png"}
             alt="anshumaan_picture"
