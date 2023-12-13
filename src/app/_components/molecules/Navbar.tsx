@@ -1,25 +1,30 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 import SharedBar from "../atoms/SharedBar";
+import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const Navbar = () => {
+  const screenWidth = useScreenWidth();
+
   return (
     <div>
-      <SharedBar containerWidth="w-[200px]">
+      <SharedBar containerWidth="md:w-[200px] w-[190px]">
         <Link
-          className="flex items-center gap-3 px-1"
           target="_blank"
           href={"https://github.com/aminoxix"}
+          className="flex items-center gap-3 px-2 md:px-1"
         >
           <Image
             loading="eager"
             className="cursor-pointer rounded-full"
             src={"/images/anshumaan.png"}
             alt="anshumaan_picture"
-            height={38}
-            width={38}
+            height={screenWidth < 770 ? 30 : 38}
+            width={screenWidth < 770 ? 30 : 38}
           />
           <p className="text-2xl font-semibold">aminoxix</p>
         </Link>

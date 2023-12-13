@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-black">
-        <div className="flex min-h-screen flex-col items-center gap-14 py-4 font-poppins md:gap-20">
+        <div className="flex min-h-screen flex-col items-center gap-14 px-9 py-4 font-poppins md:gap-20 md:px-0">
           <Navbar />
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}

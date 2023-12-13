@@ -19,12 +19,11 @@ const Footer = () => {
     setMessage("");
   };
   return (
-    <div className="flex flex-col items-center gap-8">
-      <div className="flex flex-col items-center gap-1">
+    <div className="flex w-full flex-col items-center gap-8">
+      <div className="flex w-full flex-col items-center gap-1">
         <Paragraph className="text-white" text="have a nice day!" />
-
         <SharedBar
-          containerWidth="w-[300px] relative"
+          containerWidth="w-full md:w-[300px] relative"
           innerContainerBackgroundColor="bg-black"
         >
           <input
