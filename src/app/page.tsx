@@ -10,6 +10,7 @@ import Hero from "./_components/organisms/hero";
 import Quote from "./_components/organisms/quote";
 import SharedBar from "./_components/atoms/shared-bar";
 import Experience from "./_components/organisms/experience";
+import Testimonial from "./_components/organisms/testimonial";
 import ProjectCard from "./_components/molecules/project-card";
 
 import { BiLogoTypescript } from "react-icons/bi";
@@ -69,6 +70,7 @@ export default async function Home() {
       </div>
       <Quote />
       <Experience />
+      <Testimonial />
     </main>
   );
 }
