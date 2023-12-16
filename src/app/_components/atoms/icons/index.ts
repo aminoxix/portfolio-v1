@@ -1,1 +1,1 @@
-export { InvertedCommas } from "./InvertedCommas";
+export { InvertedCommas } from "./inverted-commas";

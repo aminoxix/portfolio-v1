@@ -5,12 +5,12 @@ import { env } from "~/env";
 import { query } from "./_components/lib/utils";
 import type { APIResponse } from "./_components/lib/type";
 
-import Title from "./_components/atoms/Title";
-import Hero from "./_components/molecules/Hero";
-import Quote from "./_components/molecules/Quote";
-import SharedBar from "./_components/atoms/SharedBar";
-import Experience from "./_components/molecules/Experience";
-import ProjectCard from "./_components/molecules/ProjectCard";
+import Title from "./_components/atoms/title";
+import Hero from "./_components/organisms/hero";
+import Quote from "./_components/organisms/quote";
+import SharedBar from "./_components/atoms/shared-bar";
+import Experience from "./_components/organisms/experience";
+import ProjectCard from "./_components/molecules/project-card";
 
 import { BiLogoTypescript } from "react-icons/bi";
 import { SiTrpc, SiNextdotjs, SiPrisma } from "react-icons/si";

@@ -1,13 +1,17 @@
 import React from "react";
 import Image from "next/image";
+
+import Subtitle from "../atoms/subtitle";
+import Description from "../atoms/description";
+
 import { communityInteraction, workExperience } from "../lib/data";
 
 const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
   const timelineData = toggleTimeline ? communityInteraction : workExperience;
   return (
     <div className="flex w-full flex-col items-center">
-      {timelineData.map((timeline) => (
-        <>
+      {timelineData.map((timeline, index) => (
+        <div key={index}>
           {/* Timeline */}
           <div>
             {/* Above line */}
@@ -40,10 +44,8 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
                 }`}
               >
                 <div className="flex flex-col">
-                  <p className="text-sm text-primary md:text-lg">
-                    {timeline.name}
-                  </p>
-                  <p className="text-xs md:text-sm">{timeline.description}</p>
+                  <Subtitle text={timeline.name} />
+                  <Description text={timeline.description} />
                 </div>
                 <div className="flex items-center gap-2">
                   <p className="text-xs text-secondary md:text-sm">
@@ -62,7 +64,7 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
               ></div>
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

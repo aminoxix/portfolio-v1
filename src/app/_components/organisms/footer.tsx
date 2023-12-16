@@ -3,8 +3,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-import Paragraph from "../atoms/Paragraph";
-import SharedBar from "../atoms/SharedBar";
+import Paragraph from "../atoms/paragraph";
+import SharedBar from "../atoms/shared-bar";
 
 import { IoIosSend } from "react-icons/io";
 import { SiPolywork } from "react-icons/si";

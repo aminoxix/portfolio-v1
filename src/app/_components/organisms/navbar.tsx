@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import SharedBar from "../atoms/SharedBar";
+import SharedBar from "../atoms/shared-bar";
 import { useScreenWidth } from "../hooks/useScreenWidth";
 
 const Navbar = () => {

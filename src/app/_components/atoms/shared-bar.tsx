@@ -10,7 +10,9 @@ const SharedBar = ({
   innerContainerBackgroundColor?: string;
 }) => {
   return (
-    <div className={`bg-secondary h-14 rounded-full p-1.5 ${containerWidth}`}>
+    <div
+      className={`h-14 rounded-full bg-secondary p-1.5 drop-shadow-2xl ${containerWidth}`}
+    >
       <div
         className={`${
           innerContainerBackgroundColor ?? "bg-primary"

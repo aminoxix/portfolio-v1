@@ -18,3 +18,12 @@ model Post {
 
     @@index([name])
 }
+
+model Click {
+    id        Int      @id @default(autoincrement())
+    count     Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([count])
+}
