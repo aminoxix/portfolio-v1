@@ -10,6 +10,16 @@ export const metadata = {
   title: "aminos v1.0",
   description: "created by anshumaan",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  keywords: [
+    "javascript",
+    "typescript",
+    "react",
+    "developer",
+    "nextjs",
+    "meta tags",
+    "seo",
+  ],
+  author: "anshumaan kumar prasad",
 };
 
 export default function RootLayout({

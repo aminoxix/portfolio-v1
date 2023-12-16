@@ -1,7 +1,9 @@
 import React from "react";
+
+import { InvertedCommas } from "../icons";
+
 import Title from "../atoms/title";
 import Paragraph from "../atoms/paragraph";
-import { InvertedCommas } from "../atoms/icons";
 
 const Quote = () => {
   return (
