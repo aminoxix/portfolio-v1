@@ -36,7 +36,7 @@ export default async function Home() {
   const projects: APIResponse = await getPinnedRepos();
 
   return (
-    <main className="flex w-full flex-col items-center justify-center gap-14 bg-gradient-to-b text-white md:w-[800px]">
+    <main className="flex flex-col items-center justify-center gap-14 bg-gradient-to-b text-white">
       <Hero />
       <SharedBar containerWidth="w-full md:w-[800px]">
         <div className="flex w-full items-center justify-between px-4">
