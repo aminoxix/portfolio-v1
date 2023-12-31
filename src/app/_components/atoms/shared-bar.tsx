@@ -2,20 +2,20 @@ import React, { type ReactNode } from "react";
 
 const SharedBar = ({
   children,
-  containerWidth,
-  innerContainerBackgroundColor,
+  containerClassName,
+  innerContainerClassName,
 }: {
   children: ReactNode;
-  containerWidth: string;
-  innerContainerBackgroundColor?: string;
+  containerClassName: string;
+  innerContainerClassName?: string;
 }) => {
   return (
     <div
-      className={`h-14 rounded-full bg-secondary p-1.5 drop-shadow-2xl ${containerWidth}`}
+      className={`h-14 rounded-full bg-secondary p-1.5 drop-shadow-2xl ${containerClassName}`}
     >
       <div
         className={`${
-          innerContainerBackgroundColor ?? "bg-primary"
+          innerContainerClassName ?? "bg-primary"
         } flex h-[45px] items-center rounded-full px-1`}
       >
         {children}

@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 
 import { clickRouter } from "~/server/api/routers/click";
+import { testimonyRouter } from "~/server/api/routers/testimony";
 
 /**
  * This is the primary router for your server.
@@ -9,6 +10,7 @@ import { clickRouter } from "~/server/api/routers/click";
  */
 export const appRouter = createTRPCRouter({
   click: clickRouter,
+  testimonial: testimonyRouter,
 });
 
 // export type definition of API

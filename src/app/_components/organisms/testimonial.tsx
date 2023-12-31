@@ -1,8 +1,15 @@
-import Image from "next/image";
+"use client";
+
 import React from "react";
+import Image from "next/image";
+
+// import { api } from "~/trpc/react";
 import { obviously } from "../lib/utils";
 
 const Testimonial = () => {
+  // const { data: testimonials } = api.testimonial.getAllVerified.useQuery();
+  // console.log("testimonials", testimonials);
+
   return (
     <div className="flex w-full items-center justify-around rounded-xl border-4 border-dashed border-secondary bg-secondary bg-opacity-10 bg-clip-padding p-8 text-secondary backdrop-blur-sm backdrop-filter md:p-12">
       <div></div>
