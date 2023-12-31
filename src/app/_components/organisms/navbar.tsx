@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <SharedBar containerWidth="md:w-[200px] w-[190px]">
+      <SharedBar containerClassName="md:w-[200px] w-[190px]">
         <Link
           target="_blank"
           href={"https://github.com/aminoxix"}

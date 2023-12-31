@@ -23,8 +23,8 @@ const Footer = () => {
       <div className="flex w-full flex-col items-center gap-1">
         <Paragraph className="text-white" text="have a nice day!" />
         <SharedBar
-          containerWidth="w-full md:w-[300px] relative"
-          innerContainerBackgroundColor="bg-black"
+          containerClassName="w-full md:w-[300px] relative"
+          innerContainerClassName="bg-black"
         >
           <input
             value={message}
@@ -37,7 +37,7 @@ const Footer = () => {
           </button>
         </SharedBar>
       </div>
-      <SharedBar containerWidth="w-[200px]">
+      <SharedBar containerClassName="w-[200px]">
         <div className="flex w-full items-center justify-between px-4">
           <Link target="_blank" href="https://twitter.com/aminoxix">
             <FaSquareXTwitter className="h-7 w-7 md:h-9 md:w-9" />

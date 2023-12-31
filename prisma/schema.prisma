@@ -23,6 +23,8 @@ model Testimonial {
     social      String
     picture     String
     testimony   String
+    verified     Boolean  @default(false)
+    reviewed    Boolean  @default(false)
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 }

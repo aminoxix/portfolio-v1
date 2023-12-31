@@ -12,10 +12,10 @@ import { api } from "~/trpc/react";
 import TsParticle from "../atoms/tsparticles";
 
 const Experience = () => {
+  const [isHovering, setIsHovering] = useState(false);
   const [toggleTimeline, setToggleTimeline] = useState<boolean>(false);
   const [toggleParticleOptions, setToggleParticleOptions] =
     useState<boolean>(false);
-  const [isHovering, setIsHovering] = useState(false);
 
   const { data: allClicks, refetch } = api.click.getCount.useQuery();
 
@@ -45,7 +45,7 @@ const Experience = () => {
 
       <div className="flex flex-col gap-12">
         <SharedBar
-          containerWidth={`${toggleTimeline ? "w-[250px]" : "w-[300px]"}`}
+          containerClassName={`${toggleTimeline ? "w-[250px]" : "w-[300px]"}`}
         >
           <button
             onMouseOver={() => setIsHovering(true)}

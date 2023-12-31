@@ -38,7 +38,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center justify-center gap-14 bg-gradient-to-b text-white">
       <Hero />
-      <SharedBar containerWidth="w-full md:w-[800px]">
+      <SharedBar containerClassName="w-full md:w-[800px]">
         <div className="flex w-full items-center justify-between px-4">
           <Link target="_blank" href="https://react.dev">
             <RiReactjsLine className="h-7 w-7 text-black md:h-10 md:w-10" />
