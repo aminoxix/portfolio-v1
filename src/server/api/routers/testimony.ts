@@ -9,6 +9,7 @@ export const testimonyRouter = createTRPCRouter({
         name: z.string(),
         social: z.string(),
         picture: z.string(),
+        position: z.string(),
         testimony: z.string(),
       }),
     )
@@ -26,6 +27,7 @@ export const testimonyRouter = createTRPCRouter({
         name: z.string().optional(),
         social: z.string().optional(),
         picture: z.string().optional(),
+        position: z.string().optional(),
         testimony: z.string().optional(),
       }),
     )
@@ -39,6 +41,7 @@ export const testimonyRouter = createTRPCRouter({
           name: input.name,
           social: input.social,
           picture: input.picture,
+          position: input.position,
           testimony: input.testimony,
         },
       });

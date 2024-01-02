@@ -70,7 +70,10 @@ export default async function Home() {
       </div>
       <Quote />
       <Experience />
-      <Testimonial />
+      <div className="flex w-full flex-col gap-8 md:w-[800px]">
+        <Title text="testimonials" />
+        <Testimonial />
+      </div>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -27,7 +28,7 @@ const CreateTestimony = () => {
   const router = useRouter();
 
   const [isHovering, setIsHovering] = useState(false);
-  const [pictureURL, setPictureURL] = useState<string>("");
+  const [avatarURL, setAvatarURL] = useState<string>("");
   // const [testimony, setTestimony] = useState<Testimonial | null>(null);
 
   const { register, handleSubmit, watch, reset } = useForm<Testimonial>({
@@ -39,9 +40,9 @@ const CreateTestimony = () => {
   const { mutate: create } = api.testimonial.create.useMutation({
     onSuccess: () => {
       reset();
-      setPictureURL("");
+      setAvatarURL("");
       void router.push("/");
-      console.log("testimony created successfully");
+      // console.log("testimony created successfully");
     },
   });
 
@@ -58,16 +59,19 @@ const CreateTestimony = () => {
   // });
 
   // Upload file using standard upload
-  async function uploadAvatar(file: File) {
+  async function uploadAvatar(file: File, fileExt: string) {
     const { data, error } = await supabase.storage
       .from(env.NEXT_PUBLIC_BUCKET_NAME)
-      .upload(`avatars/${Math.floor(Math.random() * 1000000)}`, file);
+      .upload(
+        `avatars/${Math.floor(Math.random() * 1000000)}.${fileExt}`,
+        file,
+      );
 
     if (error) {
       console.log("error uploading picture", error);
     } else {
-      setPictureURL(
-        `${env.NEXT_PUBLIC_SUPABASE_PROJECT_URL}/storage/v1/object/public/${env.NEXT_PUBLIC_BUCKET_NAME}/${data.path}`,
+      setAvatarURL(
+        `https://${env.NEXT_PUBLIC_SUPABASE_PROJECT_HOSTNAME}/storage/v1/object/public/${env.NEXT_PUBLIC_BUCKET_NAME}/${data.path}`,
       );
     }
   }
@@ -75,14 +79,16 @@ const CreateTestimony = () => {
   const onSubmit: SubmitHandler<Testimonial> = ({
     name,
     social,
+    position,
     testimony,
   }) => {
-    pictureURL &&
+    avatarURL &&
       create({
         name,
         social,
+        position,
         testimony,
-        picture: pictureURL,
+        picture: avatarURL,
       });
   };
 
@@ -139,13 +145,8 @@ const CreateTestimony = () => {
             </SharedBar>
           </div>
           <div className="flex h-28 w-28 items-center justify-center">
-            {pictureURL ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                alt="avatar"
-                src={pictureURL}
-                className="min-h-28 min-w-28"
-              />
+            {avatarURL ? (
+              <Image alt="avatar" src={avatarURL} width={100} height={100} />
             ) : (
               <label className="relative flex h-28 w-28 items-center justify-center rounded-3xl outline-dashed outline-secondary">
                 <input
@@ -155,7 +156,8 @@ const CreateTestimony = () => {
                   className="w-28 text-white opacity-0"
                   onChange={async (event) => {
                     const file = event.target.files?.[0];
-                    void uploadAvatar(file!);
+                    const fileExt = file?.name.split(".").pop();
+                    void uploadAvatar(file!, fileExt!);
                   }}
                 />
                 <p className="absolute right-12">
@@ -165,6 +167,16 @@ const CreateTestimony = () => {
             )}
           </div>
         </div>
+        <SharedBar
+          containerClassName="h-full w-full"
+          innerContainerClassName="bg-black py-1 w-full h-full"
+        >
+          <input
+            placeholder="position"
+            className="w-full resize-none rounded-full bg-black p-2 text-sm outline-none"
+            {...register("position", { required: true, maxLength: 80 })}
+          />
+        </SharedBar>
         <SharedBar
           containerClassName="h-full w-full"
           innerContainerClassName="bg-black py-1 w-full h-full"

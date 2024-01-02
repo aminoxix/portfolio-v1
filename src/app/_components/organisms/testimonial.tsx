@@ -1,30 +1,24 @@
-"use client";
-
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 
-// import { api } from "~/trpc/react";
-import { obviously } from "../lib/utils";
+import { IoIosAddCircle } from "react-icons/io";
 
-const Testimonial = () => {
-  // const { data: testimonials } = api.testimonial.getAllVerified.useQuery();
-  // console.log("testimonials", testimonials);
+import { api } from "~/trpc/server";
+import Carousel from "../molecules/carousel";
+
+const Testimonial = async () => {
+  const testimonials = await api.testimonial.getAllVerified.query();
 
   return (
-    <div className="flex w-full items-center justify-around rounded-xl border-4 border-dashed border-secondary bg-secondary bg-opacity-10 bg-clip-padding p-8 text-secondary backdrop-blur-sm backdrop-filter md:p-12">
-      <div></div>
-      <Image
-        alt="testimonial"
-        src={"/images/testimonial.png"}
-        width={100}
-        height={100}
-      />
-      <p
-        className={`w-40 text-center text-2xl font-semibold md:text-4xl ${obviously.className}`}
+    // <div className="scrollbar-hide relative flex w-full gap-6 overflow-x-scroll rounded-lg">
+    <div>
+      <Carousel testimonials={[...testimonials, testimonials[0]!]} />
+      <Link
+        href={"/testimony/new"}
+        className="flex w-full shrink-0 cursor-pointer items-center justify-center gap-8 rounded-xl border-4 border-double border-secondary bg-secondary bg-opacity-10 bg-clip-padding px-5 py-3 text-secondary backdrop-blur-sm backdrop-filter md:h-64 md:w-[800px] md:px-12 md:py-8"
       >
-        Coming Soon
-      </p>
-      <div></div>
+        <IoIosAddCircle className="h-14 w-14 text-primary" />
+      </Link>
     </div>
   );
 };
