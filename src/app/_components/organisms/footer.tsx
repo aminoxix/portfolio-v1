@@ -15,7 +15,7 @@ const Footer = () => {
   const [message, setMessage] = useState<string>("");
 
   const handleClick = () => {
-    console.log("your message:", message);
+    // console.log("your message:", message);
     setMessage("");
   };
   return (

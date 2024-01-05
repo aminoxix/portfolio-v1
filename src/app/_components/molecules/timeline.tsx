@@ -33,7 +33,7 @@ const Timeline = ({ toggleTimeline }: { toggleTimeline: boolean }) => {
               />
               <div
                 key={timeline.name}
-                className={`absolute flex w-36 flex-grow flex-col gap-5 rounded-xl p-3 md:w-48 ${
+                className={`absolute flex w-36 flex-grow flex-col gap-5 rounded-xl p-5 md:w-48 ${
                   timeline.track % 2 === 0
                     ? toggleTimeline
                       ? "left-20 md:left-24"
