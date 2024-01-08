@@ -6,6 +6,7 @@ import React, { useState } from "react";
 
 import { TbSocial } from "react-icons/tb";
 import { IoIosSend } from "react-icons/io";
+import { LuLoader } from "react-icons/lu";
 import { TbPhotoPlus } from "react-icons/tb";
 import { TiSocialAtCircular } from "react-icons/ti";
 import { MdOutlineTextFields } from "react-icons/md";
@@ -29,6 +30,7 @@ const CreateTestimony = () => {
 
   const [isHovering, setIsHovering] = useState(false);
   const [avatarURL, setAvatarURL] = useState<string>("");
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   // const [testimony, setTestimony] = useState<Testimonial | null>(null);
 
   const { register, handleSubmit, watch, reset } = useForm<Testimonial>({
@@ -60,6 +62,7 @@ const CreateTestimony = () => {
 
   // Upload file using standard upload
   async function uploadAvatar(file: File, fileExt: string) {
+    setIsUploading(true);
     const { data, error } = await supabase.storage
       .from(env.NEXT_PUBLIC_BUCKET_NAME)
       .upload(
@@ -70,6 +73,7 @@ const CreateTestimony = () => {
     if (error) {
       console.log("error uploading picture", error);
     } else {
+      setIsUploading(false);
       setAvatarURL(
         `https://${env.NEXT_PUBLIC_SUPABASE_PROJECT_HOSTNAME}/storage/v1/object/public/${env.NEXT_PUBLIC_BUCKET_NAME}/${data.path}`,
       );
@@ -102,11 +106,12 @@ const CreateTestimony = () => {
           <div className="flex w-full flex-col justify-between gap-2">
             <SharedBar
               containerClassName="w-full md:w-[355px]"
-              innerContainerClassName="bg-black relative"
+              innerContainerClassName="!bg-black relative"
             >
               <MdOutlineTextFields className="absolute right-3 h-5 w-5" />
               <input
                 type="text"
+                autoComplete="off"
                 placeholder="full name"
                 {...register("name", { required: true, maxLength: 80 })}
                 className="h-9 w-full rounded-full bg-black px-1 text-sm outline-none"
@@ -138,15 +143,22 @@ const CreateTestimony = () => {
               )}
               <input
                 type="text"
+                autoComplete="off"
                 placeholder="social link to follow up (any one)"
                 {...register("social", { required: true, maxLength: 80 })}
                 className="h-9 w-full rounded-full bg-black px-1 text-sm outline-none"
               />
             </SharedBar>
           </div>
-          <div className="flex h-28 w-28 items-center justify-center">
+          <div className="flex h-28 w-28 items-center justify-center rounded-3xl">
             {avatarURL ? (
-              <Image alt="avatar" src={avatarURL} width={100} height={100} />
+              <Image
+                width={100}
+                height={100}
+                alt="avatar"
+                loading="eager"
+                src={avatarURL}
+              />
             ) : (
               <label className="relative flex h-28 w-28 items-center justify-center rounded-3xl outline-dashed outline-secondary">
                 <input
@@ -161,7 +173,11 @@ const CreateTestimony = () => {
                   }}
                 />
                 <p className="absolute right-12">
-                  <TbPhotoPlus />
+                  {isUploading ? (
+                    <LuLoader className="animate-spin" />
+                  ) : (
+                    <TbPhotoPlus />
+                  )}
                 </p>
               </label>
             )}
@@ -172,9 +188,10 @@ const CreateTestimony = () => {
           innerContainerClassName="bg-black py-1 w-full h-full"
         >
           <input
-            placeholder="position"
+            autoComplete="off"
+            placeholder="position (40 characters)"
             className="w-full resize-none rounded-full bg-black p-2 text-sm outline-none"
-            {...register("position", { required: true, maxLength: 80 })}
+            {...register("position", { required: true, maxLength: 40 })}
           />
         </SharedBar>
         <SharedBar
@@ -182,7 +199,7 @@ const CreateTestimony = () => {
           innerContainerClassName="bg-black py-1 w-full h-full"
         >
           <textarea
-            placeholder="testimony"
+            placeholder="testimony (80 characters)"
             className="w-full resize-none rounded-full bg-black p-2 text-sm outline-none"
             {...register("testimony", { required: true, maxLength: 80 })}
           />

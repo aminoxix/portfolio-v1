@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 import { obviously } from "../lib/utils";
@@ -12,19 +13,23 @@ const TestimonyCard = ({ testimonial }: { testimonial: Testimonial }) => {
   const screenWidth = useScreenWidth();
 
   return (
-    <div className="flex h-[300px] w-full cursor-pointer flex-col justify-between gap-16 rounded-xl border-4 border-double border-secondary bg-primary bg-opacity-10 bg-clip-padding p-7 backdrop-blur-sm backdrop-filter">
+    <div className="flex min-h-[303px] w-full cursor-pointer flex-col justify-between gap-16 rounded-xl border-4 border-double border-secondary bg-primary bg-opacity-10 bg-clip-padding p-7 backdrop-blur-sm backdrop-filter md:h-[388px]">
       <p className={`text-justify text-sm md:text-base ${obviously.className}`}>
         {testimonial.testimony}
       </p>
       <div className="flex w-full items-center justify-end gap-2 md:gap-4">
         <Image
+          loading="eager"
+          className="rounded-md"
+          alt={testimonial.name}
+          src={testimonial.picture}
           width={screenWidth < 770 ? 35 : 45}
           height={screenWidth < 770 ? 50 : 70}
-          src={testimonial.picture}
-          alt={testimonial.name}
         />
         <div className="flex flex-col">
-          <Subtitle className="text-white" text={testimonial.name} />
+          <Link href={testimonial.social} target="_blank">
+            <Subtitle className="text-primary" text={testimonial.name} />
+          </Link>
           <Description text={testimonial.position} />
         </div>
       </div>

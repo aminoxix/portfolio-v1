@@ -22,7 +22,7 @@ const TestimonialContainer = ({
       ))}
       <Link
         href={"/testimony/new"}
-        className="flex h-[300px] w-full cursor-pointer flex-col items-center justify-center gap-16 rounded-xl border-4 border-dashed border-secondary bg-primary bg-opacity-10 bg-clip-padding p-3 backdrop-blur-sm backdrop-filter"
+        className="flex min-h-[303px] w-full cursor-pointer flex-col items-center justify-center gap-16 rounded-xl border-4 border-dashed border-secondary bg-primary bg-opacity-10 bg-clip-padding p-3 backdrop-blur-sm backdrop-filter md:h-[388px]"
       >
         <IoIosAddCircle className="h-14 w-14 text-primary" />
       </Link>
