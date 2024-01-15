@@ -38,7 +38,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center justify-center gap-14 bg-gradient-to-b text-white">
       <Hero />
-      <SharedBar containerClassName="w-full md:w-[800px]">
+      <SharedBar containerClassName="w-full md:w-[700px] lg:w-[800px]">
         <div className="flex w-full items-center justify-between px-4">
           <Link target="_blank" href="https://react.dev">
             <RiReactjsLine className="h-7 w-7 text-black md:h-10 md:w-10" />
@@ -60,7 +60,7 @@ export default async function Home() {
           </Link>
         </div>
       </SharedBar>
-      <div className="flex w-full flex-col gap-8 md:w-[800px]">
+      <div className="flex w-full flex-col gap-8 md:w-[700px] lg:w-[800px]">
         <Title text="things I've built" />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects?.data?.user?.pinnedItems?.nodes?.map((repo, index) => (
@@ -70,8 +70,8 @@ export default async function Home() {
       </div>
       <Quote />
       <Experience />
-      <div className="flex w-full flex-col gap-8 md:w-[800px]">
-        <Title text="testimonials" />
+      <div className="flex w-full flex-col gap-8 md:w-[700px] lg:w-[800px]">
+        <Title text="echoes from collaborations" />
         <Testimonial />
       </div>
     </main>
