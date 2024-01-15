@@ -43,7 +43,7 @@ const Experience = () => {
     <div className="flex w-full flex-col items-center">
       <TsParticle toggleParticleOptions={toggleParticleOptions} />
 
-      <div className="flex w-full flex-col gap-12">
+      <div className="flex w-full flex-col items-center gap-12">
         <SharedBar
           containerClassName={`${
             toggleTimeline ? "md:w-[250px]" : "md:w-[300px]"
