@@ -29,9 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="scroll-auto bg-black">
+      <body className="bg-black">
         <div className="mx-auto max-w-7xl">
-          <div className="flex min-h-screen grow flex-col items-center gap-14 overflow-hidden px-6 py-4 font-poppins md:gap-20">
+          <div className="flex min-h-screen grow flex-col items-center justify-between gap-14 overflow-hidden px-6 py-4 font-poppins md:gap-20">
             <Navbar />
             <div className="w-full md:w-[700px] lg:w-[800px]">
               <TRPCReactProvider cookies={cookies().toString()}>
