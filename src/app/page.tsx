@@ -71,7 +71,7 @@ export default async function Home() {
       <Quote />
       <Experience />
       <div className="flex w-full flex-col gap-8 md:w-[700px] lg:w-[800px]">
-        <Title text="echoes from collaborations" />
+        <Title text="echoes from collabs" />
         <Testimonial />
       </div>
     </main>
