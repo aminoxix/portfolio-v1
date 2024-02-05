@@ -17,23 +17,23 @@ import { BiLogoTypescript } from "react-icons/bi";
 import { SiTrpc, SiNextdotjs, SiPrisma } from "react-icons/si";
 import { RiReactjsLine, RiJavascriptFill } from "react-icons/ri";
 
-// async function getPinnedRepos(): Promise<APIResponse> {
-//   const res = await fetch("https://api.github.com/graphql", {
-//     method: "POST",
-//     cache: "no-store",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-//     },
-//     body: JSON.stringify({ query }),
-//   });
+async function getPinnedRepos(): Promise<APIResponse> {
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+    },
+    body: JSON.stringify({ query }),
+  });
 
-//   const projects: APIResponse = (await res.json()) as APIResponse;
-//   return projects;
-// }
+  const projects: APIResponse = (await res.json()) as APIResponse;
+  return projects;
+}
 
 export default async function Home() {
-  // const projects: APIResponse = await getPinnedRepos();
+  const projects: APIResponse = await getPinnedRepos();
 
   return (
     <main className="flex flex-col items-center justify-center gap-14 bg-gradient-to-b text-white">
@@ -63,9 +63,9 @@ export default async function Home() {
       <div className="flex w-full flex-col gap-8 md:w-[700px] lg:w-[800px]">
         <Title text="things I've built" />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {/* {projects?.data?.user?.pinnedItems?.nodes?.map((repo, index) => (
+          {projects?.data?.user?.pinnedItems?.nodes?.map((repo, index) => (
             <ProjectCard key={index} repo={repo} />
-          ))} */}
+          ))}
         </div>
       </div>
       <Quote />
