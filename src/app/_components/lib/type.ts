@@ -17,3 +17,15 @@ export interface APIResponse {
     };
   };
 }
+
+export interface WorkExperience {
+  track: number;
+  icon: string;
+  name: string;
+  officialName: string;
+  description: string;
+  tenure: string;
+  role: string;
+  tech_stack: string[];
+  responsibilities: string[];
+}
