@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import SharedBar from "../atoms/shared-bar";
 import { useScreenWidth } from "../hooks/useScreenWidth";
