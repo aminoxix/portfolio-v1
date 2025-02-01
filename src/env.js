@@ -30,6 +30,7 @@ export const env = createEnv({
     NEXT_PUBLIC_GITHUB_TOKEN: z.string(),
     NEXT_PUBLIC_SUPABASE_PROJECT_HOSTNAME: z.string(),
     NEXT_PUBLIC_SUPABASE_PROJECT_API_KEY: z.string(),
+    NEXT_PUBLIC_EMAIL_SERVICE_BASE_URL: z.string(),
   },
 
   /**
@@ -46,6 +47,8 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_SUPABASE_PROJECT_HOSTNAME,
     NEXT_PUBLIC_SUPABASE_PROJECT_API_KEY:
       process.env.NEXT_PUBLIC_SUPABASE_PROJECT_API_KEY,
+    NEXT_PUBLIC_EMAIL_SERVICE_BASE_URL:
+      process.env.NEXT_PUBLIC_EMAIL_SERVICE_BASE_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

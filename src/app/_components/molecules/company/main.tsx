@@ -8,8 +8,7 @@ const CompanyMain = ({ company }: { company: WorkExperience }) => {
           {company.role}
         </h1>
         <p className="hidden text-white md:block">
-          {company.tenure}
-          {company.tenure !== "present" && "months"}
+          {company.tenure} {company.tenure !== "present" && "months"}
         </p>
       </div>
       <ul className="flex flex-col gap-3 text-white">
