@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import Paragraph from "../atoms/paragraph";
 import SharedBar from "../atoms/shared-bar";
+import ModalMessage from "../molecules/modals/message";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -16,7 +17,6 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoIosSend } from "react-icons/io";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { SiPolywork } from "react-icons/si";
-import ModalMessage from "../molecules/modals/message";
 
 const messageSchema = z.object({
   from: z.string().min(5, "can we be reachable?"),
@@ -34,6 +34,7 @@ const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const {
     reset,
+    watch,
     register,
     handleSubmit,
     formState: { errors, isValid },
@@ -52,19 +53,25 @@ const Footer = () => {
           content: data.content,
         },
       }),
-    onSuccess: (response) => {
+    onSuccess: () => {
       reset();
+      setIsModalOpen(false);
+      console.info({
+        text: "thanks! will revert you in a while.",
+      });
+    },
+    onError: () => {
+      console.info({
+        text: "sorry, we couldn't send your message. please try again later.",
+      });
     },
   });
 
   const onSubmit = (data: Message) => {
-    // isValid && sendEmailMutation(data);
-    setIsModalOpen(true);
-    console.log("data", data);
+    if (isValid || !isLoading) {
+      sendEmailMutation(data);
+    }
   };
-
-  console.log("isValid", isValid);
-  console.log("errors", errors);
 
   return (
     <div className="flex w-full flex-col items-center gap-8">
@@ -88,14 +95,38 @@ const Footer = () => {
               {errors.content.message}
             </p>
           )}
-          <button autoFocus type="submit" disabled={isLoading}>
-            <IoIosSend className="absolute right-4 top-3 h-8 w-8 text-primary" />
+          {/* workflow to send mail */}
+          <button
+            autoFocus
+            disabled={isLoading}
+            onClick={() => watch("content") && setIsModalOpen(true)}
+          >
+            <IoIosSend className="absolute right-4 top-3 h-8 w-8 text-primary hover:scale-110" />
           </button>
           <ModalMessage
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
           >
-            <h1>tested</h1>
+            <div className="flex flex-col gap-4">
+              <SharedBar
+                containerClassName=""
+                innerContainerClassName="bg-black"
+              >
+                <input
+                  type="text"
+                  {...register("from")}
+                  placeholder="eg.: aminos (@aminoxix@duck.com)"
+                  className="h-full min-w-full rounded-full bg-black px-2 text-xs text-white focus:outline-none"
+                />
+              </SharedBar>
+              <button
+                type="submit"
+                className="flex justify-end"
+                disabled={!isValid || isLoading}
+              >
+                <IoIosSend className="h-8 w-8 text-primary hover:scale-110" />
+              </button>
+            </div>
           </ModalMessage>
         </SharedBar>
       </form>
