@@ -2,28 +2,29 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { TbSocial } from "react-icons/tb";
 import { IoIosSend } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
-import { TbPhotoPlus } from "react-icons/tb";
-import { TiSocialAtCircular } from "react-icons/ti";
 import { MdOutlineTextFields } from "react-icons/md";
-import { TiSocialGithubCircular } from "react-icons/ti";
-import { TiSocialYoutubeCircular } from "react-icons/ti";
-import { TiSocialTwitterCircular } from "react-icons/ti";
-import { TiSocialLinkedinCircular } from "react-icons/ti";
-import { TiSocialFacebookCircular } from "react-icons/ti";
-import { TiSocialInstagramCircular } from "react-icons/ti";
+import { TbPhotoPlus, TbSocial } from "react-icons/tb";
+import {
+  TiSocialAtCircular,
+  TiSocialFacebookCircular,
+  TiSocialGithubCircular,
+  TiSocialInstagramCircular,
+  TiSocialLinkedinCircular,
+  TiSocialTwitterCircular,
+  TiSocialYoutubeCircular,
+} from "react-icons/ti";
 
-import { supabase } from "~/app/supabase";
 import { type Testimonial } from "@prisma/client";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { supabase } from "~/app/supabase";
 
+import SharedBar from "~/app/_components/atoms/shared-bar";
 import { env } from "~/env";
 import { api } from "~/trpc/react";
-import SharedBar from "~/app/_components/atoms/shared-bar";
 
 const CreateTestimony = () => {
   const router = useRouter();

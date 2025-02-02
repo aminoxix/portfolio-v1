@@ -3,8 +3,10 @@ import "~/styles/globals.css";
 import { cookies } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
 
-import Navbar from "./_components/organisms/navbar";
 import Footer from "./_components/organisms/footer";
+import Navbar from "./_components/organisms/navbar";
+
+import Providers from "./QueryProvider";
 
 export const metadata = {
   title: "aminos v1.0",
@@ -38,7 +40,9 @@ export default function RootLayout({
                 {children}
               </TRPCReactProvider>
             </div>
-            <Footer />
+            <Providers>
+              <Footer />
+            </Providers>
           </div>
         </div>
       </body>
