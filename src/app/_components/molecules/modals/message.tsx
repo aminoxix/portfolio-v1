@@ -1,34 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { type RefObject } from "react";
 import { BiXCircle } from "react-icons/bi";
 import Subtitle from "../../atoms/subtitle";
 
 interface IModalMessageProps {
-  isModalOpen: boolean;
+  onClose?: VoidFunction;
   children: React.ReactNode;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  modalRef: RefObject<HTMLDialogElement>;
 }
 
-const ModalMessage = ({
-  children,
-  isModalOpen,
-  setIsModalOpen,
-}: IModalMessageProps) => {
-  const modalRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const modalElement = modalRef.current;
-    if (!modalElement) return;
-
-    if (isModalOpen) {
-      modalElement.showModal();
-    } else {
-      modalElement.close();
-    }
-  }, [isModalOpen]);
-
+const ModalMessage = ({ children, modalRef, onClose }: IModalMessageProps) => {
   const handleCloseModal = () => {
-    setIsModalOpen(false);
     modalRef.current?.close();
+    onClose?.();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {

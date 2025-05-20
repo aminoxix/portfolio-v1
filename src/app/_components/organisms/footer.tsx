@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { sendEmail } from "~/server/api/externals/send-email";
 
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoIosSend } from "react-icons/io";
 import { IoLogoLinkedin } from "react-icons/io5";
@@ -31,7 +31,8 @@ export const defaultMessage = {
 };
 
 const Footer = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
+
   const {
     reset,
     watch,
@@ -55,7 +56,7 @@ const Footer = () => {
       }),
     onSuccess: () => {
       reset();
-      setIsModalOpen(false);
+      modalRef.current?.close();
       console.info({
         text: "thanks! will revert you in a while.",
       });
@@ -66,6 +67,21 @@ const Footer = () => {
       });
     },
   });
+
+  // auto-reset on scroll by opening dialog
+  useEffect(() => {
+    const handleScroll = () => {
+      if (modalRef.current?.open) {
+        modalRef.current.close();
+        reset();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [reset]);
 
   const onSubmit = (data: Message) => {
     if (isValid || !isLoading) {
@@ -97,16 +113,12 @@ const Footer = () => {
           )}
           {/* workflow to send mail */}
           <button
-            autoFocus
             disabled={isLoading}
-            onClick={() => watch("content") && setIsModalOpen(true)}
+            onClick={() => watch("content") && modalRef.current?.showModal()}
           >
             <IoIosSend className="absolute right-4 top-3 h-8 w-8 text-primary hover:scale-110" />
           </button>
-          <ModalMessage
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-          >
+          <ModalMessage modalRef={modalRef}>
             <div className="flex flex-col gap-4">
               <SharedBar
                 containerClassName=""
