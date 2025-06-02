@@ -32,6 +32,7 @@ export const defaultMessage = {
 
 const Footer = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   const {
     reset,
@@ -68,20 +69,24 @@ const Footer = () => {
     },
   });
 
-  // auto-reset on scroll by opening dialog
+  // close dialog & auto-reset form on leaving footer
   useEffect(() => {
-    const handleScroll = () => {
-      if (modalRef.current?.open) {
-        modalRef.current.close();
-        reset();
-      }
-    };
+    const observer = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry: IntersectionObserverEntry) => {
+          if (!entry.isIntersecting) {
+            modalRef.current?.close();
+            reset();
+          }
+        });
+      },
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [reset]);
+    const el = footerRef.current;
+    if (el) observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
 
   const onSubmit = (data: Message) => {
     if (isValid || !isLoading) {
@@ -90,7 +95,10 @@ const Footer = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center gap-8">
+    <div
+      ref={footerRef}
+      className="flex w-full flex-col items-center gap-8 border-red-500"
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-center gap-1"
