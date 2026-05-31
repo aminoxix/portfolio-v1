@@ -1,6 +1,6 @@
 // /send-email
 
-import { emailServiceApiClient } from "..";
+import { emailServiceBaseURL } from "..";
 
 interface IEmailRequest {
   template: string;
@@ -11,10 +11,15 @@ interface IEmailRequest {
 }
 
 export async function sendEmail(params: IEmailRequest) {
-  const response = await emailServiceApiClient.post<string>(
-    "/send-email",
-    params,
-  );
+  const response = await fetch(`${emailServiceBaseURL}/send-email`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
 
-  return response.data;
+  if (!response.ok) {
+    throw new Error(`Email service error: ${response.status}`);
+  }
+
+  return response.text();
 }
