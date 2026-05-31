@@ -1,6 +1,5 @@
 import "~/styles/globals.css";
 
-import { cookies } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
 
 import Footer from "./_components/organisms/footer";
@@ -36,9 +35,7 @@ export default function RootLayout({
           <div className="flex min-h-screen grow flex-col items-center justify-between gap-14 overflow-hidden px-6 py-4 font-poppins md:gap-20">
             <Navbar />
             <div className="w-full md:w-[700px] lg:w-[800px]">
-              <TRPCReactProvider cookies={cookies().toString()}>
-                {children}
-              </TRPCReactProvider>
+              <TRPCReactProvider>{children}</TRPCReactProvider>
             </div>
             <Providers>
               <Footer />
