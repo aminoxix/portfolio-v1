@@ -20,9 +20,10 @@ import { transformer } from "./shared";
  * handling a tRPC call from a React Server Component.
  */
 const createContext = cache(() => {
+  const cookieStore = cookies();
   return createTRPCContext({
     headers: new Headers({
-      cookie: cookies().toString(),
+      cookie: cookieStore.toString(),
       "x-trpc-source": "rsc",
     }),
   });
